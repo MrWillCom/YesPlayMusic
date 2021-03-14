@@ -66,6 +66,7 @@
             v-show="!player.isPersonalFM"
             @click.native="previous"
             :title="$t('player.previous')"
+            class="auto-hide"
             ><svg-icon icon-class="previous"
           /></button-icon>
           <button-icon
@@ -87,11 +88,11 @@
         </div>
         <div class="blank"></div>
       </div>
-      <div class="right-control-buttons">
+      <div class="right-control-buttons auto-hide">
         <div class="blank"></div>
         <div class="container" @click.stop>
           <button-icon
-            @click.native="goToNextTracksPage"
+            @click.native="setNextSidebarOpen"
             :title="$t('player.nextUp')"
             :class="{
               active: this.$route.name === 'next',
@@ -178,6 +179,9 @@ export default {
     ButtonIcon,
     VueSlider,
   },
+  props: {
+    isNextSidebarOpen: { type: Boolean, default: false },
+  },
   data() {
     return {
       interval: null,
@@ -256,11 +260,9 @@ export default {
     setProgress(value) {
       this.progress = value;
     },
-    goToNextTracksPage() {
+    setNextSidebarOpen() {
       if (this.player.isPersonalFM) return;
-      this.$route.name === "next"
-        ? this.$router.go(-1)
-        : this.$router.push({ name: "next" });
+      this.$emit("setNextSidebarOpen", !this.isNextSidebarOpen);
     },
     formatTrackTime(value) {
       if (!value) return "";
@@ -362,6 +364,18 @@ export default {
 
 .playing {
   display: flex;
+}
+
+@media (max-width: 700px) {
+  .controls {
+    display: flex;
+  }
+  .playing {
+    flex: 1;
+  }
+  .playing .container {
+    pointer-events: none;
+  }
 }
 
 .playing .container {
@@ -470,6 +484,20 @@ export default {
   margin-left: 16px;
 }
 
+@media (max-width: 700px) {
+  .controls {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .middle-control-buttons {
+    justify-content: flex-end;
+    margin-left: auto;
+  }
+  .auto-hide,
+  .blank {
+    display: none;
+  }
+}
+
 .button-icon.disabled {
   cursor: default;
   opacity: 0.38;
@@ -480,4 +508,13 @@ export default {
     transform: unset;
   }
 }
+
+// .lyrics-button {
+//   position: fixed;
+//   right: 18px;
+//   .svg-icon {
+//     height: 20px;
+//     width: 20px;
+//   }
+// }
 </style>

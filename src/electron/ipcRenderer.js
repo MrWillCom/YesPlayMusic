@@ -3,8 +3,8 @@ export function ipcRenderer(vueInstance) {
   // 添加专有的类名
   document.body.setAttribute("data-electron", "yes");
   document.body.setAttribute(
-    "data-electron-os",
-    window.require("os").platform()
+    "data-electron-platform-win32",
+    window.require("os").platform() == "win32" ? "yes" : "no"
   );
   // ipc message channel
   const electron = window.require("electron");
