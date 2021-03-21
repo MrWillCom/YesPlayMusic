@@ -153,10 +153,8 @@ nav {
   justify-content: space-between;
   align-items: center;
   height: 64px;
-  padding: {
-    right: 10vw;
-    left: 10vw;
-  }
+  padding: var(--main-content-padding);
+  width: calc(100vw - var(--main-content-padding-x) * 2);
   backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid transparent;
   transition-property: padding-bottom, border-bottom;
@@ -165,12 +163,6 @@ nav {
   background-color: var(--color-navbar-bg);
   z-index: 100;
   -webkit-app-region: drag;
-}
-
-@media (max-width: 1336px) {
-  nav {
-    padding: 0 5vw;
-  }
 }
 
 @supports (-moz-appearance: none) {

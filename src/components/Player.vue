@@ -326,6 +326,7 @@ export default {
   height: 64px;
   backdrop-filter: saturate(180%) blur(30px);
   // background-color: rgba(255, 255, 255, 0.86);
+  width: 100vw;
   background-color: var(--color-navbar-bg);
   z-index: 100;
 }
@@ -346,16 +347,7 @@ export default {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   height: 100%;
-  padding: {
-    right: 10vw;
-    left: 10vw;
-  }
-}
-
-@media (max-width: 1336px) {
-  .controls {
-    padding: 0 5vw;
-  }
+  padding: var(--main-content-padding);
 }
 
 .blank {
