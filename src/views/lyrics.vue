@@ -5,6 +5,7 @@
         <div
           class="lyrics-container"
           :class="{ open: view == 'lyrics' }"
+          :style="lyricFontSize"
           ref="lyricsContainer"
           v-show="!noLyric"
           @scroll="blurEffect($event)"
@@ -15,7 +16,6 @@
             :class="{
               highlight: highlightLyricIndex === index,
             }"
-            :style="lineStyles"
             v-for="(line, index) in lyricWithTranslation"
             :key="index"
             :id="`line${index}`"
@@ -161,9 +161,7 @@
                 : $t('player.openLyrics')
             "
           >
-            <svg-icon
-              :icon-class="view == 'lyrics' ? 'lyrics-fill' : 'lyrics'"
-            />
+            <svg-icon :icon-class="'lyrics-fill'" />
           </button-icon>
           <button-icon
             @click.native="setView('nextup')"
@@ -776,6 +774,7 @@ $animationDurationFast: 0.4s;
   top: 0;
   bottom: 0;
   left: 55vw;
+  right: unset;
   width: auto;
   max-width: 460px;
   padding: calc(2 * 24px + 44px) 16px;

@@ -155,6 +155,7 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  margin: var(--main-content-padding);
   margin-bottom: 20px;
   font-size: 28px;
   font-weight: 700;
@@ -177,5 +178,6 @@ footer {
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
   margin-bottom: 78px;
+  padding: var(--main-content-padding);
 }
 </style>
